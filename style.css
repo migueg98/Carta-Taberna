@@ -1,7 +1,5 @@
 /* ---------- Comportamiento de scroll ---------- */
-html {
-  scroll-behavior: smooth;          /* desplazamiento suave al pulsar las categorías */
-}
+html { scroll-behavior: smooth; }
 
 /* ---------- Estilos globales ---------- */
 body {
@@ -10,121 +8,92 @@ body {
   background: url('assets/fondo-madera.jpg') repeat-y center top;
   background-size: cover;
   background-attachment: fixed;
-  color: white;                     /* texto blanco por defecto (fuera de las fichas) */
+  color: white;
 }
 
-/* ---------- Cabecera con logo ---------- */
-header {
-  text-align: center;
-  padding: 1rem;
-}
+/* ---------- Cabecera ---------- */
+header { text-align: center; padding: 1rem; }
 .logo-placeholder {
-  font-size: 2rem;
-  font-weight: bold;
-  color: white;
+  font-size: 2rem; font-weight: bold; color: white;
   text-shadow: 1px 1px 4px #000;
 }
 
-/* ---------- Barra fija de categorías ---------- */
+/* ---------- Barra de categorías ---------- */
 .categorias {
-  position: sticky;
-  top: 0;
-  background: rgba(0, 0, 0, 0.85);
-  display: flex;
+  position: sticky; top: 0; z-index: 1000;
+  display: flex; justify-content: space-around;
+  background: rgba(0,0,0,0.85); padding: 0.5rem;
   overflow-x: auto;
-  justify-content: space-around;
-  padding: 0.5rem;
-  z-index: 1000;
 }
 .categorias a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  white-space: nowrap;
+  color: white; text-decoration: none;
+  font-weight: 600; padding: 0.5rem 1rem; white-space: nowrap;
 }
-.categorias a:hover {
-  text-decoration: underline;
-}
+.categorias a:hover { text-decoration: underline; }
 
-/* ---------- Título de cada sección ---------- */
+/* ---------- Título de sección ---------- */
 main h2 {
-  padding: 1rem;
-  margin: 0;
-  text-align: center;
-  font-size: 1.5rem;
-  background: rgba(0, 0, 0, 0.6);
-  scroll-margin-top: 80px;          /* deja visible el <h2> bajo la barra fija */
+  padding: 1rem; margin: 0; text-align: center;
+  font-size: 1.5rem; background: rgba(0,0,0,0.6);
+  scroll-margin-top: 80px;
 }
 
-/* ---------- Tarjeta de producto (vino) ---------- */
+/* ---------- Tarjeta de vino ---------- */
 .vino {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
-
+  gap: 0.75rem;             /* NEW: separación texto-imagen    */
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.95);  /* fondo blanco de la ficha */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  overflow: hidden;                       /* ¡clave! nada sobresale */
-
-  color: #000;                             /* texto negro dentro de la ficha */
-  width: 100%;
-  box-sizing: border-box;
+  background: rgba(255,255,255,0.95);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  overflow: hidden;         /* evita desbordes accidentales     */
+  width: 100%; box-sizing: border-box;
+  color: #000;
 }
 
-/* Información de la ficha */
-.vino .info { flex: 1 1 auto; padding-right: 1rem; }
+/* Columna de texto */
+.vino .info {
+  flex: 1 1 0;              /* NEW: permite encoger             */
+  min-width: 0;             /* NEW: habilita el ajuste de línea */
+  padding-right: 0.25rem;
+}
 
-/* Nombre del vino: grande y en negrita */
+/* Nombre */
 .vino .nombre {
   margin: 0.15rem 0;
-  font-size: 1.6rem;
-  font-weight: 700;
+  font-size: 1.6rem; font-weight: 700;
 }
 
-/* Bodega, Uva y D.O.: gris, la mitad de tamaño del nombre */
+/* Datos grises */
 .vino .bodega,
 .vino .uva,
 .vino .origen {
   margin: 0.1rem 0;
-  font-size: 0.8rem;                  /* ≈ ½ de 1.6rem */
-  color: #666;
+  font-size: 0.8rem; color: #666;
 }
-
-/* Prefijos automáticos */
 .vino .bodega::before { content: "Bodega: "; font-weight: 600; }
 .vino .uva::before    { content: "Uva: ";    font-weight: 600; }
 .vino .origen::before { content: "D.O.: ";   font-weight: 600; }
 
-/* Precio: ~⅔ del nombre, negro, sin negrita */
+/* Precio */
 .vino .precio {
   margin: 0.2rem 0 0;
-  font-size: 1.05rem;                 /* ≈ ⅔ de 1.6rem */
-  font-weight: 400;
-  color: #000;
+  font-size: 1.05rem; font-weight: 400; color: #000;
 }
 
-/* Imagen de la botella:
-   - altura fija (5 líneas de texto)
-   - ancho fijo (60px) mediante flex-basis
-   - NO se encoge ni se expande
-*/
+/* Imagen */
 .vino img {
-  flex: 0 0 60px;    /* grow=0, shrink=0, basis=60px  */
-  height: 5.5rem;    /* escritorio */
+  flex: 0 0 60px;           /* ancho fijo, sin crecer ni encoger */
+  height: 5.5rem;           /* alto coincide con 5 líneas de texto */
   object-fit: contain;
   border-radius: 4px;
 }
 
-/* ---------- Ajustes responsive (≤ 768 px) ---------- */
+/* ---------- Responsive (≤768 px) ---------- */
 @media (max-width: 768px) {
-  .vino { padding: 0.8rem; }
+  .vino { padding: 0.8rem; gap: 0.6rem; }
 
-  .vino img {
-    flex-basis: 55px;   /* algo más estrecho en móvil   */
-    height: 5rem;       /* acorde al texto reducido     */
-  }
+  .vino img { flex-basis: 55px; height: 5rem; }
 
   .vino .nombre  { font-size: 1.4rem; }
   .vino .bodega,
