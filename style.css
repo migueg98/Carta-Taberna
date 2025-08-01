@@ -103,24 +103,23 @@ main h2 {
   color: #000;
 }
 
-/* Imagen de la botella: altura estándar alineada al texto (≈ 5 líneas) */
+/* --- Ajuste final de la botella --- */
 .vino img {
-  height: 5.5rem;                     /* escritorio: cubre las 5 líneas de texto */
-  width: auto;
+  height: 5.5rem;        /* alto fijo (escritorio)  */
+  width: auto;           /* respeta proporción      */
+  max-width: 65px;       /* NUNCA excede 65 px      */
   object-fit: contain;
   border-radius: 4px;
+
+  flex-shrink: 0;        /* no se encoge  */
+  flex-grow: 0;          /* no se expande */
+  margin-left: auto;     /* empuja a la derecha con el padding */
 }
 
-/* ---------- Ajustes responsive (≤ 768 px) ---------- */
+/* Versión móvil: misma lógica, un poco más pequeña */
 @media (max-width: 768px) {
-  .vino { padding: 0.8rem; }
-
-  /* Botella un poco más pequeña para asegurar 4 fichas por pantalla */
-  .vino img { height: 5rem; }
-
-  .vino .nombre  { font-size: 1.4rem; }
-  .vino .bodega,
-  .vino .uva,
-  .vino .origen { font-size: 0.7rem; }
-  .vino .precio { font-size: 0.95rem; }
+  .vino img {
+    height: 5rem;
+    max-width: 55px;
+  }
 }
