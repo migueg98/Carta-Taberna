@@ -65,21 +65,21 @@ main h2{
 
 /* ---------- Imagen (botella) ---------- */
 .vino img{
-  height:5.5rem;      /* escritorio: ~85 % de la ficha */
+  height:6.6rem;      /* ≈ altura total del bloque de texto */
   width:auto;
-  max-width:80px;
+  max-width:90px;     /* no invade texto */
   object-fit:contain;
   border-radius:4px;
   flex:0 0 auto;
 }
 
-/* ---------- Responsive ≤ 768 px ---------- */
+/* ---------- Responsive ≤768 px ---------- */
 @media(max-width:768px){
   .vino{ padding:.75rem .8rem; gap:.6rem; }
 
   .vino img{
-    height:5rem;      /* móvil: un poco menor que todo el texto */
-    max-width:70px;
+    height:6rem;      /* móvil */
+    max-width:80px;
   }
 
   .vino .nombre  { font-size:1.45rem; }
