@@ -1,9 +1,84 @@
+/* Fondo madera negra */
 body {
+  margin: 0;
   font-family: sans-serif;
-  padding: 2rem;
-  background: #fff8f0;
-  color: #333;
+  background: url('fondo-madera-negra.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
 }
-h1, h2 {
-  color: #802020;
+
+/* Logo */
+header {
+  text-align: center;
+  padding: 1rem;
+}
+header img {
+  width: 160px;
+}
+
+/* Barra fija de categorías */
+.categorias {
+  position: sticky;
+  top: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem;
+  z-index: 1000;
+}
+.categorias a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+}
+.categorias a:hover {
+  text-decoration: underline;
+}
+
+/* Títulos de sección */
+main h2 {
+  padding: 1rem;
+  font-size: 1.3rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  margin: 0;
+}
+
+/* Tarjeta de vino */
+.vino {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.vino .info {
+  flex: 1;
+  padding-right: 1rem;
+}
+.vino .info p {
+  margin: 0.2rem 0;
+  font-size: 0.95rem;
+}
+
+.vino img {
+  width: 60px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Responsive: ocupa 100% del ancho y ajusta scroll cómodo */
+@media (max-width: 768px) {
+  .vino {
+    padding: 0.8rem;
+  }
+  .vino img {
+    width: 50px;
+  }
+  .vino .info p {
+    font-size: 0.9rem;
+  }
 }

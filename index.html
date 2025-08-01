@@ -2,32 +2,48 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carta – Restaurante Marialuna</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carta de Vinos</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- Logo -->
   <header>
-    <h1>Restaurante Marialuna</h1>
-    <p>Carta actualizada</p>
+    <img src="logo-blanco.png" alt="Logo del restaurante">
   </header>
 
+  <!-- Menú fijo de categorías -->
+  <nav class="categorias">
+    <a href="#tintos">Tintos</a>
+    <a href="#blancos">Blancos</a>
+    <a href="#generosos">Generosos</a>
+    <a href="#espumosos">Espumosos</a>
+  </nav>
+
   <main>
-    <section>
-      <h2>Entrantes</h2>
-      <ul>
-        <li>Ensaladilla de langostinos – 8,50€</li>
-        <li>Tartar de atún – 12,00€</li>
-      </ul>
+
+    <!-- Categoría: Tintos -->
+    <section id="tintos">
+      <h2>TINTOS</h2>
+
+      <div class="vino">
+        <div class="info">
+          <p class="nombre">Pago de los Capellanes</p>
+          <p class="origen">Ribera del Duero</p>
+          <p class="uva">Tempranillo</p>
+          <p class="bodega">Pago de los Capellanes</p>
+          <p class="precio">24,00 €</p>
+        </div>
+        <img src="botellas/pago_capellanes.png" alt="Pago de los Capellanes">
+      </div>
+
+      <!-- Repite este bloque por cada vino -->
     </section>
 
-    <section>
-      <h2>Platos principales</h2>
-      <ul>
-        <li>Atún rojo a la plancha – 16,00€</li>
-        <li>Presas ibéricas – 14,00€</li>
-      </ul>
-    </section>
+    <!-- Repetir sección para Blancos, Generosos, etc. -->
+
   </main>
+
 </body>
 </html>
