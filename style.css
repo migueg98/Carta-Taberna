@@ -66,13 +66,15 @@ main h2 {
   padding: 1rem;
   background: rgba(255, 255, 255, 0.95);  /* fondo blanco de la ficha */
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: hidden;                       /* ¡clave! nada sobresale */
 
   color: #000;                             /* texto negro dentro de la ficha */
   width: 100%;
+  box-sizing: border-box;
 }
 
 /* Información de la ficha */
-.vino .info { flex: 1; padding-right: 1rem; }
+.vino .info { flex: 1 1 auto; padding-right: 1rem; }
 
 /* Nombre del vino: grande y en negrita */
 .vino .nombre {
@@ -103,23 +105,30 @@ main h2 {
   color: #000;
 }
 
-/* --- Ajuste final de la botella --- */
+/* Imagen de la botella:
+   - altura fija (5 líneas de texto)
+   - ancho fijo (60px) mediante flex-basis
+   - NO se encoge ni se expande
+*/
 .vino img {
-  height: 5.5rem;        /* alto fijo (escritorio)  */
-  width: auto;           /* respeta proporción      */
-  max-width: 65px;       /* NUNCA excede 65 px      */
+  flex: 0 0 60px;    /* grow=0, shrink=0, basis=60px  */
+  height: 5.5rem;    /* escritorio */
   object-fit: contain;
   border-radius: 4px;
-
-  flex-shrink: 0;        /* no se encoge  */
-  flex-grow: 0;          /* no se expande */
-  margin-left: auto;     /* empuja a la derecha con el padding */
 }
 
-/* Versión móvil: misma lógica, un poco más pequeña */
+/* ---------- Ajustes responsive (≤ 768 px) ---------- */
 @media (max-width: 768px) {
+  .vino { padding: 0.8rem; }
+
   .vino img {
-    height: 5rem;
-    max-width: 55px;
+    flex-basis: 55px;   /* algo más estrecho en móvil   */
+    height: 5rem;       /* acorde al texto reducido     */
   }
+
+  .vino .nombre  { font-size: 1.4rem; }
+  .vino .bodega,
+  .vino .uva,
+  .vino .origen { font-size: 0.7rem; }
+  .vino .precio { font-size: 0.95rem; }
 }
