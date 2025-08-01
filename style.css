@@ -1,89 +1,91 @@
-/* Fondo madera negra */
 body {
-  background: repeating-linear-gradient(
-    90deg,
-    #111 0px,
-    #111 95px,
-    #000 95px,
-    #000 100px
-  );
-  background-size: 100% 100%;
+  margin: 0;
+  font-family: 'Cormorant Garamond', serif;
+  background: url('assets/fondo-madera.jpg') repeat-y center top;
+  background-size: cover;
+  background-attachment: fixed;
   color: white;
 }
 
-
-/* Logo */
 header {
   text-align: center;
   padding: 1rem;
 }
-header img {
-  width: 160px;
+
+.logo-placeholder {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 4px #000;
 }
 
-/* Barra fija de categorías */
 .categorias {
   position: sticky;
   top: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
-  justify-content: space-around;
+  overflow-x: auto;
   padding: 0.5rem;
   z-index: 1000;
+  justify-content: space-around;
 }
+
 .categorias a {
   color: white;
   text-decoration: none;
-  font-weight: bold;
-  padding: 0.5rem;
-  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
 }
+
 .categorias a:hover {
   text-decoration: underline;
 }
 
-/* Títulos de sección */
 main h2 {
   padding: 1rem;
-  font-size: 1.3rem;
-  background-color: rgba(0, 0, 0, 0.7);
+  font-size: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.6);
   margin: 0;
+  text-align: center;
 }
 
-/* Tarjeta de vino */
 .vino {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   padding: 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .vino .info {
   flex: 1;
   padding-right: 1rem;
 }
+
 .vino .info p {
   margin: 0.2rem 0;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .vino img {
-  width: 60px;
+  width: 65px;
   height: auto;
   object-fit: contain;
+  border-radius: 4px;
 }
 
-/* Responsive: ocupa 100% del ancho y ajusta scroll cómodo */
 @media (max-width: 768px) {
   .vino {
     padding: 0.8rem;
   }
+
   .vino img {
-    width: 50px;
+    width: 60px;
   }
+
   .vino .info p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 }

@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Carta de Vinos</title>
+  <title>Carta de Vinos – Taberna Jerez</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- Logo -->
   <header>
-    <img src="logo-blanco.png" alt="Logo del restaurante">
+    <div class="logo-placeholder">TABERNA JEREZ</div>
   </header>
 
   <!-- Menú fijo de categorías -->
@@ -22,11 +23,15 @@
   </nav>
 
   <main>
-
-    <!-- Categoría: Tintos -->
+    <!-- TINTOS -->
     <section id="tintos">
       <h2>TINTOS</h2>
-
+      <!-- Vinos de ejemplo -->
+      <!-- Puedes reemplazar los textos e imágenes -->
+      <!-- Repite este bloque por cada vino -->
+      <!-- Empiezo con 10 vinos -->
+      <!-- Puedes copiar más si lo deseas -->
+      <!-- Ejemplo: -->
       <div class="vino">
         <div class="info">
           <p class="nombre">Pago de los Capellanes</p>
@@ -35,14 +40,58 @@
           <p class="bodega">Pago de los Capellanes</p>
           <p class="precio">24,00 €</p>
         </div>
-        <img src="botellas/pago_capellanes.png" alt="Pago de los Capellanes">
+        <img src="assets/botellas/tinto1.jpg" alt="Pago de los Capellanes">
       </div>
-
-      <!-- Repite este bloque por cada vino -->
+      <!-- ... repite para tinto2.jpg a tinto10.jpg ... -->
     </section>
 
-    <!-- Repetir sección para Blancos, Generosos, etc. -->
+    <!-- BLANCOS -->
+    <section id="blancos">
+      <h2>BLANCOS</h2>
+      <div class="vino">
+        <div class="info">
+          <p class="nombre">Albariño Lagar de Cervera</p>
+          <p class="origen">Rías Baixas</p>
+          <p class="uva">Albariño</p>
+          <p class="bodega">La Rioja Alta</p>
+          <p class="precio">18,00 €</p>
+        </div>
+        <img src="assets/botellas/blanco1.jpg" alt="Albariño">
+      </div>
+      <!-- ... repite para blanco2.jpg a blanco10.jpg ... -->
+    </section>
 
+    <!-- GENEROSOS -->
+    <section id="generosos">
+      <h2>GENEROSOS</h2>
+      <div class="vino">
+        <div class="info">
+          <p class="nombre">Fino Tradicional</p>
+          <p class="origen">Jerez-Xérès-Sherry</p>
+          <p class="uva">Palomino</p>
+          <p class="bodega">Bodegas Tradición</p>
+          <p class="precio">12,00 €</p>
+        </div>
+        <img src="assets/botellas/generoso1.jpg" alt="Fino Tradicional">
+      </div>
+      <!-- ... repite para generoso2.jpg a generoso10.jpg ... -->
+    </section>
+
+    <!-- ESPUMOSOS -->
+    <section id="espumosos">
+      <h2>ESPUMOSOS</h2>
+      <div class="vino">
+        <div class="info">
+          <p class="nombre">Cava Brut Nature</p>
+          <p class="origen">Penedès</p>
+          <p class="uva">Macabeo, Xarel·lo, Parellada</p>
+          <p class="bodega">Cavas Bellavista</p>
+          <p class="precio">16,00 €</p>
+        </div>
+        <img src="assets/botellas/espumoso1.jpg" alt="Cava Brut Nature">
+      </div>
+      <!-- ... repite para espumoso2.jpg a espumoso10.jpg ... -->
+    </section>
   </main>
 
 </body>
