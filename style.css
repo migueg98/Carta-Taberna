@@ -2,94 +2,90 @@
 html { scroll-behavior: smooth; }
 
 /* ---------- Global ---------- */
-body {
-  margin: 0;
-  font-family: 'Cormorant Garamond', serif;
-  background: url('assets/fondo-madera.jpg') repeat-y center top;
-  background-size: cover;
-  background-attachment: fixed;
-  color: white;
+body{
+  margin:0;
+  font-family:'Cormorant Garamond',serif;
+  background:url('assets/fondo-madera.jpg') repeat-y center top;
+  background-size:cover;
+  background-attachment:fixed;
+  color:white;
 }
 
 /* ---------- Cabecera ---------- */
-header { text-align: center; padding: 1rem; }
-.logo-placeholder {
-  font-size: 2rem; font-weight: bold;
-  color: white; text-shadow: 1px 1px 4px #000;
+header{ text-align:center; padding:1rem; }
+.logo-placeholder{
+  font-size:2rem; font-weight:bold; color:white;
+  text-shadow:1px 1px 4px #000;
 }
 
 /* ---------- Barra de categorías ---------- */
-.categorias {
-  position: sticky; top: 0; z-index: 1000;
-  display: flex; justify-content: space-around;
-  background: rgba(0,0,0,0.85);
-  padding: 0.5rem; overflow-x: auto;
+.categorias{
+  position:sticky; top:0; z-index:1000;
+  display:flex; justify-content:space-around;
+  background:rgba(0,0,0,.85);
+  padding:.5rem; overflow-x:auto;
 }
-.categorias a {
-  color: white; text-decoration: none;
-  font-weight: 600; padding: 0.5rem 1rem; white-space: nowrap;
+.categorias a{
+  color:white; text-decoration:none;
+  font-weight:600; padding:.5rem 1rem; white-space:nowrap;
 }
-.categorias a:hover { text-decoration: underline; }
+.categorias a:hover{ text-decoration:underline; }
 
 /* ---------- Título de sección ---------- */
-main h2 {
-  padding: 1rem; margin: 0; text-align: center;
-  font-size: 1.5rem; background: rgba(0,0,0,0.6);
-  scroll-margin-top: 80px;
+main h2{
+  padding:1rem; margin:0; text-align:center;
+  font-size:1.5rem; background:rgba(0,0,0,.6);
+  scroll-margin-top:80px;
 }
 
 /* ---------- Tarjeta de vino ---------- */
-.vino {
-  display: flex;
-  align-items: stretch;           /* ¡Estira imagen y texto! */
-  gap: 0.8rem;
-  padding: 0.9rem 1rem;
-  background: rgba(255,255,255,0.95);
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  overflow: hidden;
-  width: 100%; box-sizing: border-box;
-  color: #000;
+.vino{
+  display:flex;
+  align-items:stretch;               /* texto e imagen = misma altura interna */
+  gap:.8rem;
+  padding:.9rem 1rem;
+  background:rgba(255,255,255,.95);
+  border-bottom:1px solid rgba(0,0,0,.1);
+  overflow:hidden;
+  width:100%; box-sizing:border-box;
+  color:#000;
 }
 
 /* Columna de texto */
-.vino .info { flex: 1 1 0; min-width: 0; }
+.vino .info{ flex:1 1 0; min-width:0; }
 
 /* Tipografía */
-.vino .nombre  { margin: 0.15rem 0; font-size: 1.6rem; font-weight: 700; }
+.vino .nombre{ margin:.15rem 0; font-size:1.6rem; font-weight:700; }
 .vino .bodega,
 .vino .uva,
-.vino .origen { margin: 0.1rem 0; font-size: 0.8rem; color: #666; }
-.vino .bodega::before { content: "Bodega: "; font-weight: 600; }
-.vino .uva::before    { content: "Uva: ";    font-weight: 600; }
-.vino .origen::before { content: "D.O.: ";   font-weight: 600; }
-.vino .precio {
-  margin: 0.2rem 0 0;
-  font-size: 1.05rem; font-weight: 400; color: #000;
-}
+.vino .origen{ margin:.1rem 0; font-size:.8rem; color:#666; }
+.vino .bodega::before{ content:"Bodega: "; font-weight:600; }
+.vino .uva::before{    content:"Uva: ";    font-weight:600; }
+.vino .origen::before{ content:"D.O.: ";   font-weight:600; }
+.vino .precio{ margin:.2rem 0 0; font-size:1.05rem; color:#000; }
 
 /* ---------- Imagen de la botella ---------- */
-.vino img {
-  /* Ocupa todo el alto menos un margen de seguridad */
-  height: calc(100% - 0.5rem);   /* márgen = 0.5 rem (ajusta a tu gusto) */
-  width: auto;
-  max-width: 85px;               /* no invadir texto */
-  object-fit: contain;
-  border-radius: 4px;
-  flex: 0 0 auto;                /* no se deforma en flex */
+.vino img{
+  /* altura total de la celda menos 1 rem ⇒
+     siempre algo más baja que todo el bloque de texto */
+  height:calc(100% - 1rem);
+  width:auto;
+  max-width:85px;      /* no invade texto */
+  object-fit:contain;
+  flex:0 0 auto;
+  border-radius:4px;
 }
 
 /* ---------- Responsive ≤768 px ---------- */
-@media (max-width: 768px) {
-  .vino { padding: 0.75rem 0.8rem; gap: 0.65rem; }
-
-  .vino img {
-    height: calc(100% - 0.4rem); /* mismo concepto, un pelín menos */
-    max-width: 70px;
+@media(max-width:768px){
+  .vino{ padding:.75rem .8rem; gap:.6rem; }
+  .vino img{
+    height:calc(100% - .8rem);
+    max-width:70px;
   }
-
-  .vino .nombre  { font-size: 1.45rem; }
+  .vino .nombre{ font-size:1.45rem; }
   .vino .bodega,
   .vino .uva,
-  .vino .origen { font-size: 0.75rem; }
-  .vino .precio { font-size: 0.95rem; }
+  .vino .origen{ font-size:.75rem; }
+  .vino .precio{ font-size:.95rem; }
 }
