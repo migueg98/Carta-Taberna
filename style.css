@@ -1,6 +1,6 @@
 /* ---------- Comportamiento de scroll ---------- */
 html {
-  scroll-behavior: smooth;          /* desplazamiento suave al pulsar en las categorías */
+  scroll-behavior: smooth;          /* desplazamiento suave al pulsar las categorías */
 }
 
 /* ---------- Estilos globales ---------- */
@@ -64,10 +64,11 @@ main h2 {
   align-items: flex-start;
 
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.95);   /* fondo blanco de la ficha */
+  background: rgba(255, 255, 255, 0.95);  /* fondo blanco de la ficha */
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
-  color: #000;                              /* texto negro dentro de la ficha */
+  color: #000;                             /* texto negro dentro de la ficha */
+  width: 100%;
 }
 
 /* Información de la ficha */
@@ -76,7 +77,7 @@ main h2 {
 /* Nombre del vino: grande y en negrita */
 .vino .nombre {
   margin: 0.15rem 0;
-  font-size: 1.6rem;      /* ajusta si lo quieres más/grande */
+  font-size: 1.6rem;
   font-weight: 700;
 }
 
@@ -85,7 +86,7 @@ main h2 {
 .vino .uva,
 .vino .origen {
   margin: 0.1rem 0;
-  font-size: 0.8rem;      /* ≈ ½ de 1.6rem */
+  font-size: 0.8rem;                  /* ≈ ½ de 1.6rem */
   color: #666;
 }
 
@@ -97,15 +98,15 @@ main h2 {
 /* Precio: ~⅔ del nombre, negro, sin negrita */
 .vino .precio {
   margin: 0.2rem 0 0;
-  font-size: 1.05rem;     /* ≈ ⅔ de 1.6rem */
+  font-size: 1.05rem;                 /* ≈ ⅔ de 1.6rem */
   font-weight: 400;
   color: #000;
 }
 
-/* Imagen de la botella */
+/* Imagen de la botella: altura estándar alineada al texto (≈ 5 líneas) */
 .vino img {
-  width: 70px;            /* ancho base */
-  height: auto;
+  height: 5.5rem;                     /* escritorio: cubre las 5 líneas de texto */
+  width: auto;
   object-fit: contain;
   border-radius: 4px;
 }
@@ -113,9 +114,11 @@ main h2 {
 /* ---------- Ajustes responsive (≤ 768 px) ---------- */
 @media (max-width: 768px) {
   .vino { padding: 0.8rem; }
-  .vino img { width: 60px; }
 
-  .vino .nombre { font-size: 1.4rem; }
+  /* Botella un poco más pequeña para asegurar 4 fichas por pantalla */
+  .vino img { height: 5rem; }
+
+  .vino .nombre  { font-size: 1.4rem; }
   .vino .bodega,
   .vino .uva,
   .vino .origen { font-size: 0.7rem; }
