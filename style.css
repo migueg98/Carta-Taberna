@@ -1,7 +1,7 @@
-/* ---------- Comportamiento de scroll ---------- */
+/* ---------- Scroll suave ---------- */
 html { scroll-behavior: smooth; }
 
-/* ---------- Estilos globales ---------- */
+/* ---------- Global ---------- */
 body {
   margin: 0;
   font-family: 'Cormorant Garamond', serif;
@@ -22,100 +22,74 @@ header { text-align: center; padding: 1rem; }
 
 /* ---------- Barra de categorías ---------- */
 .categorias {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-around;
+  position: sticky; top: 0; z-index: 1000;
+  display: flex; justify-content: space-around;
   background: rgba(0, 0, 0, 0.85);
   padding: 0.5rem;
   overflow-x: auto;
 }
 .categorias a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  white-space: nowrap;
+  color: white; text-decoration: none;
+  font-weight: 600; padding: 0.5rem 1rem; white-space: nowrap;
 }
 .categorias a:hover { text-decoration: underline; }
 
-/* ---------- Título de sección ---------- */
+/* ---------- Títulos ---------- */
 main h2 {
-  padding: 1rem;
-  margin: 0;
-  text-align: center;
-  font-size: 1.5rem;
-  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem; margin: 0; text-align: center;
+  font-size: 1.5rem; background: rgba(0,0,0,0.6);
   scroll-margin-top: 80px;
 }
 
 /* ---------- Tarjeta de vino ---------- */
 .vino {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;        /* ¡clave! hijos = misma altura */
   gap: 0.75rem;
-  padding: 0.9rem 1rem;                /* ↓ padding vertical optimizado */
-  background: rgba(255, 255, 255, 0.95);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  overflow: hidden;                    /* evita desbordes */
-  width: 100%;
-  box-sizing: border-box;
+  padding: 0.9rem 1rem;
+  background: rgba(255,255,255,0.95);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  overflow: hidden;
+  width: 100%; box-sizing: border-box;
   color: #000;
 }
 
 /* Columna de texto */
 .vino .info {
   flex: 1 1 0;
-  min-width: 0;                        /* permite romper líneas largas */
+  min-width: 0;
   padding-right: 0.25rem;
 }
 
-/* Nombre */
-.vino .nombre {
-  margin: 0.15rem 0;
-  font-size: 1.6rem;
-  font-weight: 700;
-}
-
-/* Datos grises */
+/* Tipos de texto */
+.vino .nombre  { margin: 0.15rem 0; font-size: 1.6rem; font-weight: 700; }
 .vino .bodega,
 .vino .uva,
-.vino .origen {
-  margin: 0.1rem 0;
-  font-size: 0.8rem;
-  color: #666;
-}
+.vino .origen { margin: 0.1rem 0; font-size: 0.8rem; color: #666; }
 .vino .bodega::before { content: "Bodega: "; font-weight: 600; }
 .vino .uva::before    { content: "Uva: ";    font-weight: 600; }
 .vino .origen::before { content: "D.O.: ";   font-weight: 600; }
-
-/* Precio */
 .vino .precio {
   margin: 0.2rem 0 0;
-  font-size: 1.05rem;
-  font-weight: 400;
-  color: #000;
+  font-size: 1.05rem; font-weight: 400; color: #000;
 }
 
-/* Imagen de la botella */
+/* Imagen: altura 100 %, ancho limitado */
 .vino img {
-  flex: 0 0 70px;          /* ↑ ancho fijo 70 px */
-  height: 6.3rem;          /* ↑ alto mayor para aprovechar espacio */
+  height: 100%;           /* llena verticalmente la ficha */
+  width: auto;
+  max-width: 80px;        /* no invadir texto */
   object-fit: contain;
   border-radius: 4px;
+  flex: 0 0 auto;         /* no crece ni se encoge */
 }
 
-/* ---------- Responsive (≤768 px) ---------- */
+/* ---------- Responsive ≤ 768 px ---------- */
 @media (max-width: 768px) {
-  .vino {
-    padding: 0.75rem 0.8rem;           /* ↓ padding aún más compacto */
-    gap: 0.6rem;
-  }
+  .vino { padding: 0.75rem 0.8rem; gap: 0.6rem; }
 
   .vino img {
-    flex-basis: 62px;                  /* ↑ ancho móvil */
-    height: 5.8rem;                   /* ↑ alto móvil */
+    max-width: 70px;      /* un poco más estrecha en móvil */
   }
 
   .vino .nombre  { font-size: 1.4rem; }
