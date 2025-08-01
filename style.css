@@ -1,9 +1,7 @@
-/* Scroll suave para anclas */
-html {
-  scroll-behavior: smooth;
-}
+/* Scroll suave al usar anclas */
+html { scroll-behavior: smooth; }
 
-/* Estilo global */
+/* --- Estilos base --- */
 body {
   margin: 0;
   font-family: 'Cormorant Garamond', serif;
@@ -13,11 +11,8 @@ body {
   color: white;
 }
 
-/* Cabecera con logo */
-header {
-  text-align: center;
-  padding: 1rem;
-}
+/* Cabecera */
+header { text-align: center; padding: 1rem; }
 .logo-placeholder {
   font-size: 2rem;
   font-weight: bold;
@@ -25,71 +20,43 @@ header {
   text-shadow: 1px 1px 4px #000;
 }
 
-/* Barra de categorías estilo Uber Eats */
+/* Barra fija de categorías */
 .categorias {
-  position: sticky;
-  top: 0;
-  background: rgba(0, 0, 0, 0.85);
-  display: flex;
-  overflow-x: auto;
-  padding: 0.5rem;
-  z-index: 1000;
-  justify-content: space-around;
+  position: sticky; top: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex; justify-content: space-around;
+  overflow-x: auto; padding: 0.5rem; z-index: 1000;
 }
 .categorias a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  white-space: nowrap;
+  color: white; text-decoration: none;
+  font-weight: 600; padding: 0.5rem 1rem; white-space: nowrap;
 }
-.categorias a:hover {
-  text-decoration: underline;
-}
+.categorias a:hover { text-decoration: underline; }
 
-/* Títulos de sección */
+/* Cabecera de cada sección */
 main h2 {
-  padding: 1rem;
+  padding: 1rem; margin: 0; text-align: center;
   font-size: 1.5rem;
-  background-color: rgba(0, 0, 0, 0.6);
-  margin: 0;
-  text-align: center;
-  scroll-margin-top: 80px; /* espacio para la barra fija */
+  background: rgba(0,0,0,0.6);
+  scroll-margin-top: 80px;       /* deja visible el h2 bajo la barra */
 }
 
 /* Tarjeta de vino */
 .vino {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background-color: rgba(0, 0, 0, 0.4);
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 1rem; background: rgba(0,0,0,0.4);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
-.vino .info {
-  flex: 1;
-  padding-right: 1rem;
-}
-.vino .info p {
-  margin: 0.2rem 0;
-  font-size: 1rem;
-}
+.vino .info { flex: 1; padding-right: 1rem; }
+.vino .info p { margin: 0.2rem 0; font-size: 1rem; }
 .vino img {
-  width: 65px;
-  height: auto;
-  object-fit: contain;
-  border-radius: 4px;
+  width: 65px; object-fit: contain;
+  border-radius: 4px; height: auto;
 }
 
-/* Ajustes responsive */
+/* Responsive */
 @media (max-width: 768px) {
-  .vino {
-    padding: 0.8rem;
-  }
-  .vino img {
-    width: 60px;
-  }
-  .vino .info p {
-    font-size: 0.95rem;
-  }
+  .vino { padding: 0.8rem; }
+  .vino img { width: 60px; }
+  .vino .info p { font-size: 0.95rem; }
 }
