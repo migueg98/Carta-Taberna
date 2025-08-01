@@ -65,7 +65,7 @@ main h2{
 
 /* ---------- Imagen (botella) ---------- */
 .vino img{
-  height:6.6rem;      /* ≈ altura total del bloque de texto */
+  height:7rem;      /* ≈ altura total del bloque de texto */
   width:auto;
   max-width:90px;     /* no invade texto */
   object-fit:contain;
