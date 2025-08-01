@@ -1,11 +1,16 @@
 /* Fondo madera negra */
 body {
-  margin: 0;
-  font-family: sans-serif;
-  background: url('fondo-madera-negra.jpg') no-repeat center center fixed;
-  background-size: cover;
+  background: repeating-linear-gradient(
+    90deg,
+    #111 0px,
+    #111 95px,
+    #000 95px,
+    #000 100px
+  );
+  background-size: 100% 100%;
   color: white;
 }
+
 
 /* Logo */
 header {
