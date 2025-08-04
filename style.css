@@ -83,17 +83,14 @@ main h2{
   font-size:.95rem;
 }
 
-/* ──────────── IMAGEN ─────────────── */
-/* Caja fija 90 px (escritorio) — 75 px (móvil)              */
-/* object-fit: cover  → todas las botellas rellenan la caja, */
-/*                      quedando los tapones alineados       */
+/* ─── IMAGEN de la botella ─── */
 .vino img{
-  height:100%;            /* llena la altura de la ficha    */
-  width:90px;             /* caja fija escritorio            */
-  object-fit:cover;       /* recorta si la proporción no cuadra */
-  object-position:center top; /* tapón alineado arriba       */
-  border-radius:4px;
-  flex:0 0 90px;          /* ancho fijo en el layout         */
+  height: 100%;           /* se ajusta al alto de la ficha   */
+  width: 90px;            /* caja fija escritorio            */
+  object-fit: contain;    /* muestra la imagen completa      */
+  object-position: center top; /* tapón arriba, centrada      */
+  border-radius: 4px;
+  flex: 0 0 90px;         /* ancho fijo en el layout         */
 }
 
 /* ──────────── ESCRITORIO (>768 px) ── */
