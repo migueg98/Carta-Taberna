@@ -1,41 +1,69 @@
-// Duración del scroll en milisegundos (rápido)
-const DURATION_MS = 350;
+/* ──────────────────────────────────────────────────────────────
+   script.js  – scroll control con offset dinámico y suave
+   Versión ajustada para que el <h2> quede siempre visible
+   (incluye margen extra configurable para “aire”)
+──────────────────────────────────────────────────────────────── */
 
-// Calcula el offset para que el <h2> quede visible bajo la barra fija
-function getTopOffset() {
-  const topbar = document.querySelector('.categorias');
-  // Ajusta +10 si quieres un pequeño margen extra
-  return (topbar ? topbar.offsetHeight : 0) + 10;
+/* 1 ▸ Configuración rápida */
+const DURATION_MS   = 350;  // velocidad del scroll
+const EXTRA_MARGIN  = 12;   // px añadidos bajo la barra (aire)
+
+/* 2 ▸ Calcula el alto TOTAL que debe restarse */
+function getTopOffset () {
+  const bar = document.querySelector('.categorias');
+  const barra = bar ? bar.offsetHeight : 0;
+
+  /* iOS notch y safe-area podrían añadir padding-top al body:
+     lo sumamos si existe para asegurarnos */
+  const bodyPadding = parseInt(getComputedStyle(document.body).paddingTop || 0);
+
+  return barra + bodyPadding + EXTRA_MARGIN;
 }
 
-// Animación suave personalizada (easeInOut)
-function smoothScrollTo(targetY, duration = DURATION_MS) {
-  const startY = window.pageYOffset;
-  const diff = targetY - startY;
-  let startTime = null;
+/* 3 ▸ Animación easeInOutQuad */
+function smoothScrollTo (targetY, duration = DURATION_MS) {
+  const startY   = window.pageYOffset;
+  const diff     = targetY - startY;
+  let   startT   = null;
 
-  function step(timestamp) {
-    if (!startTime) startTime = timestamp;
-    const t = Math.min(1, (timestamp - startTime) / duration);
-    const ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; // easeInOutQuad
+  function step (tstamp) {
+    if (!startT) startT = tstamp;
+    const t = Math.min(1, (tstamp - startT) / duration);
+    const ease = t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t; // easeInOutQuad
     window.scrollTo(0, startY + diff * ease);
     if (t < 1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
 }
 
-// Intercepta clicks del menú de categorías
-document.querySelectorAll('.categorias a[href^="#"]').forEach((link) => {
-  link.addEventListener('click', (e) => {
+/* 4 ▸ Intercepta los clics del menú */
+document.querySelectorAll('.categorias a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
     e.preventDefault();
     const id = link.getAttribute('href').slice(1);
     const section = document.getElementById(id);
     if (!section) return;
 
-    // Posición de destino teniendo en cuenta el offset de la barra
+    /* Destino = posición real del <section> – offset barra */
     const y = section.getBoundingClientRect().top + window.pageYOffset - getTopOffset();
     smoothScrollTo(y);
-    // Opcional: actualiza el hash sin saltar
+
+    /* Actualiza el hash sin provocar salto brusco */
     history.replaceState(null, '', `#${id}`);
   });
+});
+
+/* 5 ▸ Corrige la posición si la página se abre ya con hash
+      (navegador aterriza primero, luego ajustamos) */
+window.addEventListener('load', () => {
+  const hash = location.hash.slice(1);
+  if (hash) {
+    const section = document.getElementById(hash);
+    if (section) {
+      setTimeout(() => {
+        const y = section.getBoundingClientRect().top + window.pageYOffset - getTopOffset();
+        window.scrollTo(0, y);
+      }, 50); // da tiempo a que todo mida bien
+    }
+  }
 });
