@@ -1,69 +1,64 @@
-/* ──────────────────────────────────────────────────────────────
-   script.js  – scroll control con offset dinámico y suave
-   Versión ajustada para que el <h2> quede siempre visible
-   (incluye margen extra configurable para “aire”)
-──────────────────────────────────────────────────────────────── */
+/*  ──────────────────────────────────────────────
+    Scroll con offset dinámico
+    (v2025-08-04)
+   ────────────────────────────────────────────── */
 
-/* 1 ▸ Configuración rápida */
-const DURATION_MS   = 350;  // velocidad del scroll
-const EXTRA_MARGIN  = 12;   // px añadidos bajo la barra (aire)
+const DURATION   = 350;   // milisegundos
+const EXTRA      = 8;     // ‘aire’ adicional bajo la barra
 
-/* 2 ▸ Calcula el alto TOTAL que debe restarse */
-function getTopOffset () {
-  const bar = document.querySelector('.categorias');
-  const barra = bar ? bar.offsetHeight : 0;
+/* ► Calcula el offset que hay que restar */
+function topOffset () {
+  const bar  = document.querySelector('.categorias');
+  const barH = bar ? bar.getBoundingClientRect().height : 0;
 
-  /* iOS notch y safe-area podrían añadir padding-top al body:
-     lo sumamos si existe para asegurarnos */
-  const bodyPadding = parseInt(getComputedStyle(document.body).paddingTop || 0);
+  /* Algunos navegadores aplican padding-top
+     por el notch (safe-area). Lo recogemos: */
+  const safe = parseInt(getComputedStyle(document.documentElement)
+                        .getPropertyValue('padding-top')) || 0;
 
-  return barra + bodyPadding + EXTRA_MARGIN;
+  return barH + safe + EXTRA;
 }
 
-/* 3 ▸ Animación easeInOutQuad */
-function smoothScrollTo (targetY, duration = DURATION_MS) {
-  const startY   = window.pageYOffset;
-  const diff     = targetY - startY;
-  let   startT   = null;
+/* ► Animación easeInOutQuad */
+function scrollAnim (dest, ms = DURATION) {
+  const yIni = window.pageYOffset;
+  const delta = dest - yIni;
+  let   t0 = null;
 
-  function step (tstamp) {
-    if (!startT) startT = tstamp;
-    const t = Math.min(1, (tstamp - startT) / duration);
-    const ease = t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t; // easeInOutQuad
-    window.scrollTo(0, startY + diff * ease);
-    if (t < 1) requestAnimationFrame(step);
+  function step (t) {
+    if (!t0) t0 = t;
+    const p = Math.min(1, (t - t0) / ms);
+    const ease = p < .5 ? 2 * p * p : -1 + (4 - 2 * p) * p;
+    window.scrollTo(0, yIni + delta * ease);
+    if (p < 1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
 }
 
-/* 4 ▸ Intercepta los clics del menú */
-document.querySelectorAll('.categorias a[href^="#"]').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const id = link.getAttribute('href').slice(1);
-    const section = document.getElementById(id);
-    if (!section) return;
+/* ► Gestor de clics del menú */
+document.querySelectorAll('.categorias a[href^="#"]').forEach(a => {
+  a.addEventListener('click', ev => {
+    ev.preventDefault();
+    const id = a.getAttribute('href').substring(1);
+    const sec = document.getElementById(id);
+    if (!sec) return;
 
-    /* Destino = posición real del <section> – offset barra */
-    const y = section.getBoundingClientRect().top + window.pageYOffset - getTopOffset();
-    smoothScrollTo(y);
-
-    /* Actualiza el hash sin provocar salto brusco */
-    history.replaceState(null, '', `#${id}`);
+    const y = sec.getBoundingClientRect().top + window.pageYOffset - topOffset();
+    scrollAnim(y);
+    history.replaceState(null, '', '#' + id);
   });
 });
 
-/* 5 ▸ Corrige la posición si la página se abre ya con hash
-      (navegador aterriza primero, luego ajustamos) */
+/* ► Corrige al cargar si ya hay hash */
 window.addEventListener('load', () => {
-  const hash = location.hash.slice(1);
-  if (hash) {
-    const section = document.getElementById(hash);
-    if (section) {
-      setTimeout(() => {
-        const y = section.getBoundingClientRect().top + window.pageYOffset - getTopOffset();
-        window.scrollTo(0, y);
-      }, 50); // da tiempo a que todo mida bien
-    }
-  }
+  const id = location.hash.slice(1);
+  if (!id) return;
+  const sec = document.getElementById(id);
+  if (!sec) return;
+
+  /* pequeño timeout para garantizar medidas correctas */
+  setTimeout(() => {
+    const y = sec.getBoundingClientRect().top + window.pageYOffset - topOffset();
+    window.scrollTo(0, y);
+  }, 60);
 });

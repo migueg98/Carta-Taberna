@@ -1,7 +1,7 @@
 /* ---------- variables ---------- */
 :root{
-  --alto-ficha-mov: 25vh;   /* 4 fichas = 100vh */
-  --alto-ficha-desk: auto;  /* en escritorio dejamos crecer */
+  --alto-ficha-mov : 25vh;  /* 4 fichas = 100 vh en móvil   */
+  --alto-ficha-desk: auto;  /* altura libre en escritorio   */
 }
 
 /* ---------- scroll suave ---------- */
@@ -15,67 +15,97 @@ body{
   color:white;
 }
 
-/* ---------- cabecera y menú (igual que antes) ---------- */
+/* ---------- cabecera ---------- */
 header{ text-align:center; padding:1rem; }
-.logo-placeholder{ font-size:2rem; font-weight:700; color:white; text-shadow:1px 1px 4px #000; }
+.logo-placeholder{
+  font-size:2rem; font-weight:700; color:white;
+  text-shadow:1px 1px 4px #000;
+}
 
+/* ---------- barra fija de categorías ---------- */
 .categorias{
   position:sticky; top:0; z-index:1000;
   display:flex; justify-content:space-around;
   background:rgba(0,0,0,.85);
-  padding:.5rem; overflow-x:auto;
+  padding:.5rem;
+  overflow-x:auto;         /* desliza si no cabe en una línea */
 }
-.categorias a{ color:white; text-decoration:none; font-weight:600; padding:.5rem 1rem; }
+.categorias a{
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  padding:.5rem 1rem;
+  white-space:nowrap;      /* ← evita que un enlace se parta en dos líneas */
+}
 .categorias a:hover{ text-decoration:underline; }
 
 /* ---------- títulos de sección ---------- */
 main h2{
   margin:0; padding:1rem; text-align:center;
-  background:rgba(0,0,0,.6); font-size:1.45rem;
-  scroll-margin-top:80px;
+  background:rgba(0,0,0,.6);
+  font-size:1.45rem;
+  scroll-margin-top:80px;  /* refuerzo por si JS no carga */
 }
 
 /* ---------- ficha de producto ---------- */
 .vino{
   display:flex;
-  align-items:center;            /* centra texto e imagen verticalmente */
+  align-items:center;           /* texto e imagen centrados verticalmente */
   gap:.8rem;
-  height:var(--alto-ficha-mov);  /* 25vh en móvil, auto en desktop */
+  height:var(--alto-ficha-mov); /* 25 vh en móvil, auto en escritorio     */
   padding:.8rem 1rem;
   background:rgba(255,255,255,.96);
   border-bottom:1px solid rgba(0,0,0,.12);
-  color:#000; box-sizing:border-box;
+  box-sizing:border-box;
+  color:#000;
 }
 
 /* columna de texto */
 .vino .info{
-  flex:1 1 0; min-width:0;
+  flex:1 1 0;
+  min-width:0;
 }
-.vino .nombre { margin:.1rem 0; font-size:1.35rem; font-weight:700; line-height:1.2; }
+.vino .nombre{
+  margin:.1rem 0;
+  font-size:1.35rem;
+  font-weight:700;
+  line-height:1.2;
+}
 .vino .bodega,
 .vino .uva,
-.vino .origen { margin:.05rem 0; font-size:.78rem; color:#666; line-height:1.25; }
+.vino .origen{
+  margin:.05rem 0;
+  font-size:.78rem;
+  color:#666;
+  line-height:1.25;
+}
 .vino .bodega::before{ content:"Bodega: "; font-weight:600; }
 .vino .uva::before   { content:"Uva: ";    font-weight:600; }
 .vino .origen::before{ content:"D.O.: ";   font-weight:600; }
-.vino .precio{ margin-top:.25rem; font-size:.95rem; }
+.vino .precio{
+  margin-top:.25rem;
+  font-size:.95rem;
+}
 
 /* imagen */
 .vino img{
-  height:100%;          /* ocupa toda la ficha */
+  height:100%;          /* ocupa toda la altura útil de la ficha */
   width:auto;
-  max-width:80px;       /* evita invadir texto */
+  max-width:80px;       /* no invade la columna de texto         */
   object-fit:contain;
   border-radius:4px;
   flex:0 0 auto;
 }
 
-/* ---------- escritorio (>768 px) ---------- */
+/* ---------- escritorio (> 768 px) ---------- */
 @media(min-width:769px){
-  :root{ --alto-ficha-mov: var(--alto-ficha-desk); } /* altura libre */
-  .vino{ height:auto; padding:1rem 1.2rem; }
+  :root{ --alto-ficha-mov: var(--alto-ficha-desk); }  /* altura libre */
+  .vino{
+    height:auto;
+    padding:1rem 1.2rem;
+  }
   .vino img{ max-width:90px; }
-  .vino .nombre{ font-size:1.6rem; }
+  .vino .nombre { font-size:1.6rem; }
   .vino .bodega,
   .vino .uva,
   .vino .origen{ font-size:.85rem; }
