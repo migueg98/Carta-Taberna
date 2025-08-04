@@ -85,13 +85,14 @@ main h2{
 
 /* ─── IMAGEN de la botella ─── */
 .vino img{
-  height: 100%;           /* se ajusta al alto de la ficha   */
-  width: 90px;            /* caja fija escritorio            */
-  object-fit: contain;    /* muestra la imagen completa      */
+  height: 100%;            /* ocupa todo el alto de la ficha */
+  width: 135px;            /* caja fija escritorio (+50 %)    */
+  object-fit: contain;     /* muestra la botella completa     */
   object-position: center top; /* tapón arriba, centrada      */
   border-radius: 4px;
-  flex: 0 0 90px;         /* ancho fijo en el layout         */
+  flex: 0 0 135px;         /* ancho fijo en el layout         */
 }
+
 
 /* ──────────── ESCRITORIO (>768 px) ── */
 @media (min-width:769px){
@@ -109,8 +110,8 @@ main h2{
 @media (max-width:768px){
   .vino{ padding:.75rem .8rem; gap:.6rem; }
   .vino img{
-    width:75px;          /* caja fija móvil  */
-    flex-basis:75px;
+    width:112px;          /* caja fija móvil  */
+    flex-basis:112px;
   }
   .vino .nombre  { font-size:1.45rem; }
   .vino .bodega,
